@@ -1,4 +1,3 @@
-# .github/workflows/ci.yml
 name: CI
 
 on:
@@ -20,12 +19,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  # Use the Python version you need
+          python-version: '3.x'  # Specify the required Python version
+
+      - name: Install dependencies
+        run: |
+          pip install pytest  # Install pytest for running tests
 
       - name: Run script
-        run: python Hello.py  # Replace `your_script.py` with your Python file
+        run: python Hello.py  # Run the Hello.py script
 
-      # Uncomment the lines below if you have tests to run
-      # - name: Run tests
-      #   run: python -m unittest discover  # For a simple unittest setup
+      - name: Run tests
+        run: pytest test_Hello.py  # Run tests in test_Hello.py
 
