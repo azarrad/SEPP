@@ -1,14 +1,14 @@
-# Use an official Java runtime as a parent image
-FROM openjdk:21
+# Base image
+FROM python:3.9-slim
 
-# Set the working directory in the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the local files into the container
-COPY HelloWorld.java /app
+# Copy application files
+COPY . /app
 
-# Compile the Java program
-RUN javac HelloWorld.java
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Run the program when the container starts
-CMD ["java", "HelloWorld"]
+# Define default command
+CMD ["python", "app.py"]
